@@ -15,7 +15,7 @@ do_upgrade () {
 
 
 install_base_packages () {
-  apt-get --assume-yes install sudo tmux bash-completion ca-certificates rtorrent curl
+  apt-get --assume-yes install sudo tmux bash-completion ca-certificates rtorrent curl nginx
   apt-get --assume-yes install git lm-sensors
 }
 
