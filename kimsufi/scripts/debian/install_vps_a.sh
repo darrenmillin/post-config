@@ -28,10 +28,11 @@ create_rtorrent_user (){
   RTORRENT_HOME="/home/rtorrent"
   adduser --home ${RTORRENT_HOME} --disabled-password --shell /bin/bash --gecos "rTorrent User" rtorrent
   mkdir -p ${RTORRENT_HOME}/downloads
-  mkdir -p ${RTORRENT_HOME}/watch
   mkdir -p ${RTORRENT_HOME}/queue
+  mkdir -p ${RTORRENT_HOME}/session
+  mkdir -p ${RTORRENT_HOME}/watch
 
-  cat <<-RTORRENT_CONFIG > ${RTORRENT_HOME}/rtorrent.rc
+  cat <<-RTORRENT_CONFIG > ${RTORRENT_HOME}/.rtorrent.rc
 #This is an example resource file for rTorrent. Copy to
 # ~/.rtorrent.rc and enable/modify the options as needed. Remember to
 # uncomment the options you wish to enable.
@@ -52,16 +53,16 @@ download_rate = 2000
 upload_rate = 2000
 
 # Default directory to save the downloaded torrents.
-directory = /home/torrent/downloads
+directory = /home/rtorrent/downloads
 
 # Default session directory. Make sure you don't run multiple instance
 # of rtorrent using the same session directory. Perhaps using a
 # relative path?
-session = /home/torrent/session
+session = /home/rtorrent/session
 
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
-schedule = watch_directory,5,5,load_start=/sync/smaug/*.torrent
+schedule = watch_directory,5,5,load_start=/home/rtorrent/watch/*.torrent
 #schedule = untied_directory,5,5,stop_untied=
 
 # Close torrents when diskspace is low.
